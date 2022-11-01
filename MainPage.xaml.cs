@@ -1,7 +1,7 @@
 ﻿namespace Lab6Starter;
 /**
  * 
- * Name: James Chartraw
+ * Name: James Chartraw, Zach La Vake
  * Date: 11/1/2022
  * Description:
  * Bugs:
@@ -60,6 +60,17 @@ public partial class MainPage : ContentPage
         {
             CelebrateVictory(victor);
 
+            if (victor.Equals(Player.O))
+            {
+                TicTacToeGame.scores[(int)Player.O]++;
+            } else
+            {
+                TicTacToeGame.scores[(int)Player.X]++;
+            }
+
+
+            ResetGame();
+
         }
     }
 
@@ -96,7 +107,7 @@ public partial class MainPage : ContentPage
     /// </summary>
     private void CelebrateVictory(Player victor)
     {
-        //MessageBox.Show(Application.Current.MainWindow, String.Format("Congratulations, {0}, you're the big winner today", victor.ToString()));
+        DisplayAlert(String.Format("Congratulations, {0}, you're the big winner today", victor.ToString()), "Ok", "Cancel");
         XScoreLBL.Text = String.Format("X's Score: {0}", ticTacToe.XScore);
         OScoreLBL.Text = String.Format("O's Score: {0}", ticTacToe.OScore);
 

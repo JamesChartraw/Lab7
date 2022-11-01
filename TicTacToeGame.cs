@@ -23,7 +23,7 @@ internal class TicTacToeGame
 {
     internal const int GRID_SIZE = 3;
     Player[,] grid = new Player[GRID_SIZE, GRID_SIZE];
-    int[] scores = { 0, 0 };
+    public static int[] scores = { 0, 0 };
 
     /// <summary>
     /// The player about to make a move

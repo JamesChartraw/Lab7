@@ -32,6 +32,8 @@
 
             </Grid>
 
+            <Button onClick="ResetGame()"></Button>
+
         </VerticalStackLayout>
     </ScrollView>
 
