@@ -1,5 +1,5 @@
 ﻿namespace Lab6Starter;
-/**
+/*
  * 
  * Name: James Chartraw, Zach La Vake
  * Date: 11/1/2022
@@ -44,13 +44,20 @@ public partial class MainPage : ContentPage
         Player currentPlayer = ticTacToe.CurrentPlayer;
 
         Button button = (Button)sender;
+        // Reset the Game
+        if(button == ResetButton)
+        {
+            ResetGame();
+            return;
+        }
+
         int row;
         int col;
 
         FindTappedButtonRowCol(button, out row, out col);
         if (button.Text.ToString() != "")
-        { // if the button has an X or O, bail
-            DisplayAlert("Illegal move", "Fill this in with something more meaningful", "OK");
+        { // If the button has an X or O, bail
+            DisplayAlert("Illegal move", "Pick an empty square!", "OK");
             return;
         }
         button.Text = currentPlayer.ToString();
@@ -63,14 +70,16 @@ public partial class MainPage : ContentPage
             if (victor.Equals(Player.O))
             {
                 TicTacToeGame.scores[(int)Player.O]++;
-            } else
+            } 
+            else if(victor.Equals(Player.X))
             {
                 TicTacToeGame.scores[(int)Player.X]++;
             }
-
-
+            else
+            {
+                ResetGame();
+            }
             ResetGame();
-
         }
     }
 
@@ -107,15 +116,19 @@ public partial class MainPage : ContentPage
     /// </summary>
     private void CelebrateVictory(Player victor)
     {
-        DisplayAlert(String.Format("Congratulations, {0}, you're the big winner today", victor.ToString()), "Ok", "Cancel");
-        XScoreLBL.Text = String.Format("X's Score: {0}", ticTacToe.XScore);
-        OScoreLBL.Text = String.Format("O's Score: {0}", ticTacToe.OScore);
-
-        ResetGame();
+        if (victor.Equals(Player.Both))
+        {
+            DisplayAlert("TIE!", "Nobody wins this round", "OK");
+        }
+        else
+        {
+            DisplayAlert("Congratulations!",String.Format("{0} you're the big winner today", victor.ToString()), "OK");
+        }
     }
 
     /// <summary>
-    /// Resets the grid buttons so their content is all ""
+    /// Resets the grid buttons so their contnt is all blank.
+    /// Updates the score and rests the Game.
     /// </summary>
     private void ResetGame()
     {
@@ -128,8 +141,10 @@ public partial class MainPage : ContentPage
         Tile20.Text = "";
         Tile21.Text = "";
         Tile22.Text = "";
+        XScoreLBL.Text = String.Format("X's Score: {0}", ticTacToe.XScore);
+        OScoreLBL.Text = String.Format("O's Score: {0}", ticTacToe.OScore);
+        ticTacToe.ResetGame();
     }
-
 }
 
 

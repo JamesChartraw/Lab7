@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Lab6Starter</name>
+    </assembly>
+    <members>
+        <member name="T:Lab6Starter.AppShell">
+            
+            Name: Did you fill this in?
+            Date:
+            Description:
+            Bugs:
+            Reflection:
+            
+        </member>
+        <member name="T:Lab6Starter.MainPage">
+            <summary>
+            The MainPage, this is a 1-screen app
+            </summary>
+        </member>
+        <member name="M:Lab6Starter.MainPage.#ctor">
+            <summary>
+            initializes the component
+            </summary>
+        </member>
+        <member name="M:Lab6Starter.MainPage.HandleButtonClick(System.Object,System.EventArgs)">
+            <summary>
+            Handles button clicks - changes the button to an X or O (depending on whose turn it is)
+            Checks to see if there is a victory - if so, invoke 
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Lab6Starter.MainPage.FindTappedButtonRowCol(Microsoft.Maui.Controls.Button,System.Int32@,System.Int32@)">
+            <summary>
+            Returns the row and col of the clicked row
+            There used to be an easier way to do this ...
+            </summary>
+            <param name="button"></param>
+            <param name="row"></param>
+            <param name="col"></param>
+        </member>
+        <member name="M:Lab6Starter.MainPage.CelebrateVictory(Lab6Starter.Player)">
+            <summary>
+            Celebrates victory, displaying a message box and resetting the game
+            </summary>
+        </member>
+        <member name="M:Lab6Starter.MainPage.ResetGame">
+            <summary>
+            Resets the grid buttons so their contnt is all blank.
+            Updates the score and rests the Game.
+            </summary>
+        </member>
+        <member name="T:Lab6Starter.MauiProgram">
+            
+            Name: 
+            Date:
+            Description: And this?
+            Bugs:
+            Reflection:
+            
+        </member>
+        <member name="T:Lab6Starter.Player">
+            
+            Name: 
+            Date:
+            Description:
+            Bugs: Did you miss this?
+            Reflection:
+            
+            <summary>
+            A Player is either an X, O, Nobody, or Both
+            </summary>
+        </member>
+        <member name="T:Lab6Starter.TicTacToeGame">
+            
+            Name: 
+            Date:
+            Description:
+            Bugs:
+            Reflection: The most important bit ...
+            
+            <summary>
+            The model class for TicTacToe
+            </summary>
+        </member>
+        <member name="P:Lab6Starter.TicTacToeGame.CurrentPlayer">
+            <summary>
+            The player about to make a move
+            </summary>
+        </member>
+        <member name="P:Lab6Starter.TicTacToeGame.XScore">
+            <summary>
+            Access to X's score
+            </summary>
+        </member>
+        <member name="P:Lab6Starter.TicTacToeGame.OScore">
+            <summary>
+            Access to Y's score
+            </summary>
+        </member>
+        <member name="M:Lab6Starter.TicTacToeGame.#ctor">
+            <summary>
+            Resets the game
+            </summary>
+        </member>
+        <member name="M:Lab6Starter.TicTacToeGame.ProcessTurn(System.Int32,System.Int32,Lab6Starter.Player@)">
+            <summary>
+            Processes the current turn - returns true if there is a victor, false otherwise
+            </summary>
+            <param name="row">clicked row</param>
+            <param name="col">clicked column</param>
+            <param name="victor">whoever won or Player.Nobody if nobody's won</param>
+            <returns>true if there is a victor</returns>
+        </member>
+        <member name="M:Lab6Starter.TicTacToeGame.IsThereAWinner">
+            <summary>
+            Returns Player.X or Player.O if there is a winner, Player.Nobody if nobody's won, Player.Both if there's a tie
+            This method is too long --  refactor it to make it more compact.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lab6Starter.TicTacToeGame.ResetGame">
+            <summary>
+            Resets the grid and sets the current player to X
+            </summary>
+        </member>
+        <member name="M:Lab6Starter.TicTacToeGame.ToggleCurrentPlayer">
+            <summary>
+            Toggles the current Player: X => O, O => X
+            If Empty, ignore it
+            </summary>
+        </member>
+    </members>
+</doc>
