@@ -19,7 +19,8 @@ public partial class MainPage : ContentPage
 {
     TicTacToeGame ticTacToe; // model class
     Button[,] grid;          // stores the buttons
-
+    private TimeOnly time = new TimeOnly(00, 00, 00);
+    private bool isRunning = true;
 
     /// <summary>
     /// initializes the component
@@ -29,6 +30,7 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         ticTacToe = new TicTacToeGame();
         grid = new Button[TicTacToeGame.GRID_SIZE, TicTacToeGame.GRID_SIZE] { { Tile00, Tile01, Tile02 }, { Tile10, Tile11, Tile12 }, { Tile20, Tile21, Tile22 } };
+        Timer();
     }
 
     /// <summary>
@@ -45,8 +47,9 @@ public partial class MainPage : ContentPage
 
         Button button = (Button)sender;
         // Reset the Game
-        if(button == ResetButton)
+        if (button == ResetButton)
         {
+            time = new TimeOnly(00, 00, 00);
             ResetGame();
             return;
         }
@@ -70,14 +73,10 @@ public partial class MainPage : ContentPage
             if (victor.Equals(Player.O))
             {
                 TicTacToeGame.scores[(int)Player.O]++;
-            } 
-            else if(victor.Equals(Player.X))
+            }
+            else if (victor.Equals(Player.X))
             {
                 TicTacToeGame.scores[(int)Player.X]++;
-            }
-            else
-            {
-                ResetGame();
             }
             ResetGame();
         }
@@ -99,7 +98,7 @@ public partial class MainPage : ContentPage
         {
             for (int c = 0; c < TicTacToeGame.GRID_SIZE; c++)
             {
-                if(button == grid[r, c])
+                if (button == grid[r, c])
                 {
                     row = r;
                     col = c;
@@ -107,27 +106,29 @@ public partial class MainPage : ContentPage
                 }
             }
         }
-        
+
     }
 
 
     /// <summary>
     /// Celebrates victory, displaying a message box and resetting the game
     /// </summary>
-    private void CelebrateVictory(Player victor)
+    private async void CelebrateVictory(Player victor)
     {
+        isRunning = false;
         if (victor.Equals(Player.Both))
         {
-            DisplayAlert("TIE!", "Nobody wins this round", "OK");
+            await DisplayAlert("TIE!", "Nobody wins this round", "OK");
         }
         else
         {
-            DisplayAlert("Congratulations!",String.Format("{0} you're the big winner today", victor.ToString()), "OK");
+            await DisplayAlert("Congratulations!", String.Format("{0} you're the big winner today", victor.ToString()), "OK");
         }
+        Timer();
     }
 
     /// <summary>
-    /// Resets the grid buttons so their contnt is all blank.
+    /// Resets the grid buttons so their content is all blank.
     /// Updates the score and rests the Game.
     /// </summary>
     private void ResetGame()
@@ -144,6 +145,18 @@ public partial class MainPage : ContentPage
         XScoreLBL.Text = String.Format("X's Score: {0}", ticTacToe.XScore);
         OScoreLBL.Text = String.Format("O's Score: {0}", ticTacToe.OScore);
         ticTacToe.ResetGame();
+    }
+
+    private async void Timer()
+    {
+        isRunning = true;
+        time = new TimeOnly(00, 00, 00);
+        while (isRunning)
+        {
+            time = time.Add(TimeSpan.FromSeconds(1));
+            Display.Text = $"{time.Minute:00}:{time.Second:00}";
+            await Task.Delay(TimeSpan.FromSeconds(1));
+        }
     }
 }
 
