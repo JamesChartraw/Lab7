@@ -7,9 +7,13 @@
         <VerticalStackLayout>
 
             <Label x:Name="XScoreLBL" Text="X's Score: 0"   VerticalOptions="Center" FontSize="24"/>
-            <Label x:Name="OScoreLBL" Text="O's Score: 0"  VerticalOptions="Center" FontSize="24"/>
-
-            <Grid Background="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Label x:Name="OScoreLBL" Text="O's Score: 0"   VerticalOptions="Center" FontSize="24"/>
+            <Label x:Name="Display"
+                   Text="00:00"
+                   HorizontalOptions="Center"
+                   Margin="10,10,10,10"
+                   FontSize="24"/>
+            <Grid Background="Chartreuse" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
