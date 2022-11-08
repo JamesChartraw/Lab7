@@ -3,9 +3,9 @@
  * 
  * Name: James Chartraw, Zach La Vake
  * Date: 11/1/2022
- * Description:
+ * Description: A simple TicTacToe game with random colors after every button click
  * Bugs:
- * Reflection:
+ * Reflection: This was a nice easy and fun assignment. Working with git in the classroom really helped our Group Project this week as we all had to merge our work together. 
  * 
  */
 
@@ -19,7 +19,6 @@ public partial class MainPage : ContentPage
 {
     TicTacToeGame ticTacToe; // model class
     Button[,] grid;          // stores the buttons
-
 
     /// <summary>
     /// initializes the component
@@ -60,7 +59,12 @@ public partial class MainPage : ContentPage
             DisplayAlert("Illegal move", "Pick an empty square!", "OK");
             return;
         }
+
         button.Text = currentPlayer.ToString();
+        // Uses a Random object called "rndmColor" to generate a random RGB values and change the pressed button's color
+        Random rndmColor = new Random();
+        button.Background = Color.FromRgb( rndmColor.Next( 256 ) , rndmColor.Next( 256 ) , rndmColor.Next( 256 ) ); 
+
         Boolean gameOver = ticTacToe.ProcessTurn(row, col, out victor);
 
         if (gameOver)
@@ -127,20 +131,15 @@ public partial class MainPage : ContentPage
     }
 
     /// <summary>
-    /// Resets the grid buttons so their contnt is all blank.
+    /// Resets all the grid buttons so their content is all blank and color is black.
     /// Updates the score and rests the Game.
     /// </summary>
     private void ResetGame()
     {
-        Tile00.Text = "";
-        Tile01.Text = "";
-        Tile02.Text = "";
-        Tile10.Text = "";
-        Tile11.Text = "";
-        Tile12.Text = "";
-        Tile20.Text = "";
-        Tile21.Text = "";
-        Tile22.Text = "";
+        // Reset all Tile text to blank
+        Tile00.Text = Tile01.Text = Tile02.Text = Tile10.Text = Tile11.Text = Tile12.Text = Tile20.Text = Tile21.Text = Tile22.Text = "";
+        // Reset all Tile colors to black
+        Tile00.Background = Tile01.Background = Tile02.Background = Tile10.Background = Tile11.Background = Tile12.Background = Tile20.Background = Tile21.Background = Tile22.Background = Colors.Black;
         XScoreLBL.Text = String.Format("X's Score: {0}", ticTacToe.XScore);
         OScoreLBL.Text = String.Format("O's Score: {0}", ticTacToe.OScore);
         ticTacToe.ResetGame();
